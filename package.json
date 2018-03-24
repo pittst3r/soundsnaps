@@ -1,0 +1,16 @@
+{
+  "name": "aurworld",
+  "version": "0.0.0",
+  "description": "Stereo recordings of our world",
+  "main": "index.js",
+  "author": "Robbie Pitts <me@robbie-pitts.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "deploy": "git push heroku master"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "rss": "^1.2.2"
+  }
+}
