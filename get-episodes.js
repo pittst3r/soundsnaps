@@ -1,13 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const isProd = process.env.NODE_ENV === "production";
-
 module.exports = function getEpisodes(next, complete) {
-  if (isProd) {
-    throw new Error("Prod not supported");
-  }
-
   fs.readdir("fixtures", (err, files) => {
     if (err) {
       throw err;

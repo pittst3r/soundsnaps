@@ -3,8 +3,6 @@ const fs = require("fs");
 const path = require("path");
 const getEpisodes = require("./get-episodes");
 
-const isProd = process.env.NODE_ENV === "production";
-
 module.exports = function generateRSS(cb) {
   let feed = new RSS({
     title: "Aurworlds",
