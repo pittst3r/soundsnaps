@@ -28,7 +28,8 @@ const ARGV = yargs
           {
             Body: data,
             Bucket: process.env.BUCKETEER_BUCKET_NAME,
-            Key: argv.to
+            Key: argv.to,
+            ACL: "public-read"
           },
           (err, response) => {
             if (err) throw err;

@@ -13,41 +13,13 @@ module.exports = function generateRSS(cb) {
     managingEditor: "Robbie Pitts",
     webMaster: "Robbie Pitts",
     copyright: "2018 Robbie Pitts",
-    categories: [],
+    language: "en",
+    categories: ["Society & Culture"],
     pubDate: new Date().toISOString(),
-    ttl: "60",
-    custom_namespaces: {
-      itunes: "http://www.itunes.com/dtds/example.0.dtd"
-    },
-    custom_elements: [
-      { "itunes:subtitle": "Stereo recordings of our world" },
-      { "itunes:author": "Robbie Pitts" },
-      {
-        "itunes:summary": "Stereo recordings of our world."
-      },
-      {
-        "itunes:owner": [
-          { "itunes:name": "Robbie Pitts" },
-          { "itunes:email": "me@robbie-pitts.com" }
-        ]
-      },
-      {
-        "itunes:image": {
-          _attr: {
-            href: "http://aurworld.robbie-pitts.com/icon.png"
-          }
-        }
-      },
-      {
-        "itunes:category": [
-          {
-            _attr: {
-              text: "Society & Culture"
-            }
-          }
-        ]
-      }
-    ]
+    ttl: "60"
+    // custom_namespaces: {
+    //   itunes: "http://www.itunes.com/dtds/example.0.dtd"
+    // },
   });
 
   let episodes = getEpisodes(
