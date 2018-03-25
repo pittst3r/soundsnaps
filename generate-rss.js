@@ -43,7 +43,8 @@ module.exports = function generateRSS(cb) {
         categories: ["Society & Culture"],
         author: "Robbie Pitts",
         date: meta.date,
-        enclosure: { url: meta.url }
+        enclosure: { url: meta.url },
+        custom_elements: [{ "itunes:duration": meta.duration }]
       });
     },
     () => {

@@ -31,14 +31,17 @@ module.exports = function getEpisodes(next, complete) {
         }
 
         data.Contents.forEach(file => {
-          next({
-            date: file.LastModified,
-            file: path.parse(file.Key).base,
-            title: path.parse(file.Key).name,
-            url: `https://${data.Name}.s3.amazonaws.com/${file.Key}`
-          });
+          s3.getObject({ Bucket: data.Name, Key: file.Key }, (err, obj) => {
+            next({
+              date: obj.LastModified,
+              file: path.parse(obj.Key).base,
+              title: obj.Metadata.title,
+              duration: obj.Metadata.duration,
+              url: `https://${data.Name}.s3.amazonaws.com/${obj.Key}`
+            });
 
-          count++;
+            count++;
+          });
         });
       }
     );
