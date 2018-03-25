@@ -20,13 +20,18 @@ const ARGV = yargs
         .positional("from", { type: "string" })
         .positional("to", { type: "string" })
         .option("title")
+        .option("date")
         .option("duration");
     },
     argv => {
       fs.readFile(argv.from, (err, data) => {
         if (err) throw err;
 
-        let meta = {};
+        let meta = {
+          title: "Untitled",
+          duration: "0:00",
+          date: new Date().toISOString()
+        };
 
         if (argv.title) {
           meta.title = argv.title;
@@ -34,6 +39,10 @@ const ARGV = yargs
 
         if (argv.duration) {
           meta.duration = argv.duration;
+        }
+
+        if (argv.date) {
+          meta.date = new Date(argv.date).toISOString();
         }
 
         S3.putObject(
@@ -62,7 +71,13 @@ const ARGV = yargs
         (err, data) => {
           if (err) throw err;
 
-          data.Contents.forEach(file => console.log(file.Key));
+          data.Contents.forEach(file => {
+            S3.headObject({ Bucket: data.Name, Key: file.Key }, (err, obj) => {
+              console.log(file.Key);
+              console.log(obj.Metadata);
+              console.log();
+            });
+          });
         }
       );
     }
