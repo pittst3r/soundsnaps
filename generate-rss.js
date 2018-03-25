@@ -44,7 +44,16 @@ module.exports = function generateRSS(cb) {
         author: "Robbie Pitts",
         date: meta.date,
         enclosure: { url: meta.url, size: meta.size },
-        custom_elements: [{ "itunes:duration": meta.duration }]
+        custom_elements: [
+          { "itunes:duration": meta.duration },
+          {
+            "itunes:image": {
+              _attr: {
+                href: "http://aurworld.robbie-pitts.com/icon.png"
+              }
+            }
+          }
+        ]
       });
     },
     () => {
