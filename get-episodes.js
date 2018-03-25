@@ -15,9 +15,12 @@ module.exports = function getEpisodes(next, complete) {
       region: "us-east-1"
     });
 
+    console.log("starting request");
+
     s3.listObjectsV2(
       { Bucket: process.env.BUCKETEER_BUCKET_NAME },
       (err, data) => {
+        console.log(data);
         if (!data) {
           total = 0;
 
