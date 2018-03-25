@@ -35,7 +35,7 @@ module.exports = function getEpisodes(next, complete) {
             date: file.LastModified,
             file: path.parse(file.Key).base,
             title: path.parse(file.Key).name,
-            url: `https://${data.Name}.s3.amazonaws.com/public/${file.Key}`
+            url: `https://${data.Name}.s3.amazonaws.com/${file.Key}`
           });
 
           count++;
