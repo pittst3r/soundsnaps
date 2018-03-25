@@ -15,12 +15,9 @@ module.exports = function getEpisodes(next, complete) {
       region: "us-east-1"
     });
 
-    console.log("starting request");
-
     s3.listObjectsV2(
       { Bucket: process.env.BUCKETEER_BUCKET_NAME },
       (err, data) => {
-        console.log(data);
         if (!data) {
           total = 0;
 
@@ -38,10 +35,10 @@ module.exports = function getEpisodes(next, complete) {
             date: file.LastModified,
             file: path.parse(file.Key).base,
             title: path.parse(file.Key).name,
-            url: `https://${
-              process.env.BUCKETEER_BUCKET_NAME
-            }.s3.amazonaws.com/public/${file.Key}`
+            url: `https://${data.Name}.s3.amazonaws.com/public/${file.Key}`
           });
+
+          count++;
         });
       }
     );
