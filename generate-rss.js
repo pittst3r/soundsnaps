@@ -17,9 +17,9 @@ module.exports = function generateRSS(cb) {
     // categories: ["Society & Culture"],
     pubDate: new Date().toISOString(),
     ttl: "60",
-    // custom_namespaces: {
-    //   itunes: "http://www.itunes.com/dtds/example.0.dtd"
-    // },
+    custom_namespaces: {
+      itunes: "http://www.itunes.com/dtds/podcast-1.0.dtd"
+    },
     custom_elements: [
       {
         "itunes:category": [
