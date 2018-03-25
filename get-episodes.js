@@ -34,7 +34,6 @@ module.exports = function getEpisodes(next, complete) {
           s3.getObject({ Bucket: data.Name, Key: file.Key }, (err, obj) => {
             next({
               date: obj.LastModified,
-              file: path.parse(obj.Key).base,
               title: obj.Metadata.title,
               duration: obj.Metadata.duration,
               url: `https://${data.Name}.s3.amazonaws.com/${obj.Key}`
