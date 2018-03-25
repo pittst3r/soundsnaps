@@ -7,6 +7,15 @@ const PORT = process.env.PORT || 3000;
 
 APP.use(express.static("static"));
 
+APP.get("/", (req, res) => {
+  res.send(
+    "<html>" +
+      "<head><title>Aurworld</title></head>" +
+      '<body><a href="/rss.xml">RSS</a></body>' +
+      "</html>"
+  );
+});
+
 APP.get("/rss.xml", (req, res) => {
   res.type("application/xml");
 
