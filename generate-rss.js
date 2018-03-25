@@ -14,13 +14,15 @@ module.exports = function generateRSS(cb) {
     webMaster: "Robbie Pitts",
     copyright: "2018 Robbie Pitts",
     language: "en",
-    // categories: ["Society & Culture"],
     pubDate: new Date().toISOString(),
     ttl: "60",
     custom_namespaces: {
       itunes: "http://www.itunes.com/dtds/podcast-1.0.dtd"
     },
     custom_elements: [
+      {
+        "itunes:explicit": "no"
+      },
       {
         "itunes:category": [
           {
