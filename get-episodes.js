@@ -1,7 +1,12 @@
 const fs = require("fs");
 const path = require("path");
 
+const IS_PROD = process.env.NODE_ENV === "production";
+
 module.exports = function getEpisodes(next, complete) {
+  if (IS_PROD) {
+  }
+
   fs.readdir("static/fixtures", (err, files) => {
     if (err) {
       throw err;

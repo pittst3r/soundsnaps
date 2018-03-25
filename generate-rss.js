@@ -7,8 +7,8 @@ module.exports = function generateRSS(cb) {
   let feed = new RSS({
     title: "Aurworld",
     description: "Stereo recordings of our world",
-    feed_url: "https://aurworld.robbie-pitts.com/rss.xml",
-    site_url: "https://aurworld.robbie-pitts.com/",
+    feed_url: "http://aurworld.robbie-pitts.com/rss.xml",
+    site_url: "http://aurworld.robbie-pitts.com/",
     image_url: "http://aurworld.robbie-pitts.com/icon.png",
     managingEditor: "Robbie Pitts",
     webMaster: "Robbie Pitts",
