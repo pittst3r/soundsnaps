@@ -54,11 +54,11 @@ module.exports = function generateRSS(cb) {
     meta => {
       feed.item({
         title: meta.title,
-        url: meta.location,
+        url: meta.url,
         categories: ["Society & Culture"],
         author: "Robbie Pitts",
         date: meta.date,
-        enclosure: { url: meta.url, file: meta.file }
+        enclosure: { url: meta.url }
       });
     },
     () => {

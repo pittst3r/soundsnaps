@@ -6,11 +6,18 @@
   "author": "Robbie Pitts <me@robbie-pitts.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js",
-    "deploy": "git push heroku master"
+    "start": "NODE_ENV=production node index.js",
+    "deploy": "git push heroku master",
+    "upload": "node -r dotenv/config ./scripts/s3.js upload",
+    "list-files": "node -r dotenv/config ./scripts/s3.js list"
   },
   "dependencies": {
+    "aws-sdk": "^2.213.1",
     "express": "^4.16.3",
     "rss": "^1.2.2"
+  },
+  "devDependencies": {
+    "dotenv": "^5.0.1",
+    "yargs": "^11.0.0"
   }
 }
