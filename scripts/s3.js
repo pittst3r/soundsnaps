@@ -30,7 +30,8 @@ const ARGV = yargs
         let meta = {
           title: "Untitled",
           duration: "0:00",
-          date: new Date().toISOString()
+          date: new Date().toISOString(),
+          size: data.length.toString()
         };
 
         if (argv.title) {

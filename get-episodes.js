@@ -36,6 +36,7 @@ module.exports = function getEpisodes(next, complete) {
               date: obj.Metadata.date,
               title: obj.Metadata.title,
               duration: obj.Metadata.duration,
+              size: obj.Metadata.size,
               url: `https://${data.Name}.s3.amazonaws.com/${file.Key}`
             });
 
