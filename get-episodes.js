@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 module.exports = function getEpisodes(next, complete) {
-  fs.readdir("fixtures", (err, files) => {
+  fs.readdir("static/fixtures", (err, files) => {
     if (err) {
       throw err;
     }
@@ -16,15 +16,17 @@ module.exports = function getEpisodes(next, complete) {
     let count = 0;
 
     files.forEach(filename => {
-      let location = path.resolve("fixtures", filename);
-      let title = path.parse(location).name;
+      let file = path.resolve("static", "fixtures", filename);
+      let url = path.join("/static/fixtures", filename);
+      let title = path.parse(filename).name;
 
-      fs.stat(location, (_, stats) => {
+      fs.stat(file, (_, stats) => {
         let date = stats.birthtime.toISOString();
 
         next({
           title,
-          location,
+          url,
+          file,
           date
         });
 
@@ -32,9 +34,10 @@ module.exports = function getEpisodes(next, complete) {
       });
     });
 
-    setInterval(() => {
+    let interval = setInterval(() => {
       if (count === total) {
         complete();
+        clearInterval(interval);
       }
     }, 2);
   });

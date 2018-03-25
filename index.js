@@ -7,15 +7,7 @@ const PORT = process.env.PORT || 3000;
 
 APP.get("/rss.xml", (req, res) => {
   generateRSS(feed => {
-    res.format({
-      "application/xml": function() {
-        res.send(feed.xml());
-      },
-
-      default: function() {
-        res.status(406);
-      }
-    });
+    res.send(feed.xml());
   });
 });
 
