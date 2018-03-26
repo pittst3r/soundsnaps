@@ -10,7 +10,7 @@ APP.use(express.static("static"));
 APP.get("/", (req, res) => {
   res.send(
     "<html>" +
-      "<head><title>Aurworld</title></head>" +
+      "<head><title>Soundsnaps</title></head>" +
       '<body><a href="/rss.xml">RSS</a></body>' +
       "</html>"
   );
