@@ -1,5 +1,8 @@
 const express = require("express");
 const generateRSS = require("./generate-rss");
+const getEpisode = require("./get-episode");
+const getEpisodes = require("./get-episodes");
+const pug = require("pug");
 
 let APP = express();
 const IS_PROD = process.env.NODE_ENV === "production";
@@ -8,12 +11,29 @@ const PORT = process.env.PORT || 3000;
 APP.use(express.static("static"));
 
 APP.get("/", (req, res) => {
-  res.send(
-    "<html>" +
-      "<head><title>Soundsnaps</title></head>" +
-      '<body><a href="/rss.xml">RSS</a></body>' +
-      "</html>"
+  let episodes = [];
+
+  getEpisodes(
+    episode => episodes.push(episode),
+    () => {
+      let sortedEpisodes = episodes.sort(
+        (l, r) => Date.parse(r.date) - Date.parse(l.date)
+      );
+      pug.renderFile("./index.pug", { episodes }, (err, data) => {
+        res.send(data);
+      });
+    }
   );
+});
+
+APP.get("/:key", (req, res) => {
+  let key = req.params["key"];
+
+  getEpisode(key, episode => {
+    pug.renderFile("./episode.pug", { episode }, (err, data) => {
+      res.send(data);
+    });
+  });
 });
 
 APP.get("/rss.xml", (req, res) => {

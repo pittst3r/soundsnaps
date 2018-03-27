@@ -13,8 +13,8 @@ const S3 = new AWS.S3({
 
 const ARGV = yargs
   .command(
-    "upload <from> <to>",
-    "upload a 'cast",
+    "put <from> <to>",
+    "put a 'cast",
     yargs => {
       return yargs
         .positional("from", { type: "string" })
@@ -101,5 +101,28 @@ const ARGV = yargs
           if (err) throw err;
         }
       );
+    }
+  )
+  .command(
+    "upload <key> <file>",
+    "upload file",
+    yargs => {
+      return yargs
+        .positional("key", { type: "string" })
+        .positional("file", { type: "string" });
+    },
+    argv => {
+      fs.readFile(argv.from, (err, data) => {
+        S3.upload(
+          {
+            Bucket: process.env.BUCKETEER_BUCKET_NAME,
+            Key: argv.key,
+            Body: data
+          },
+          err => {
+            if (err) throw err;
+          }
+        );
+      });
     }
   ).argv;

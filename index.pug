@@ -1,0 +1,19 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    title Soundsnaps
+
+  body 
+    h1 Soundsnaps
+
+    p
+      a(href="/rss.xml") RSS
+
+    h2 Episodes
+      each episode in episodes
+        h3
+          a(href=episode.key)= episode.title
+        ul
+          li= new Date(episode.date).toDateString()
+          li= episode.duration

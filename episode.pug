@@ -1,0 +1,15 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    title Soundsnaps: #{episode.title}
+
+  body 
+    h1 Soundsnaps
+    h2= episode.title
+    audio(src=episode.url controls preload)
+    dl
+      dt Date
+      dd= new Date(episode.date).toDateString()
+      dt Duration
+      dd= episode.duration
