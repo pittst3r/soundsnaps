@@ -13,7 +13,7 @@ html(lang="en")
     h2 Episodes
       each episode in episodes
         h3
-          a(href=episode.key)= episode.title
+          a(href=`/episodes/${episode.key}`)= episode.title
         ul
           li= new Date(episode.date).toDateString()
           li= episode.duration

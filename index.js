@@ -26,21 +26,27 @@ APP.get("/", (req, res) => {
   );
 });
 
-APP.get("/:key", (req, res) => {
-  let key = req.params["key"];
-
-  getEpisode(key, episode => {
-    pug.renderFile("./episode.pug", { episode }, (err, data) => {
-      res.send(data);
-    });
-  });
-});
-
 APP.get("/rss.xml", (req, res) => {
   res.type("application/xml");
 
   generateRSS(feed => {
     res.send(feed.xml());
+  });
+});
+
+APP.get("/episodes/:key", (req, res) => {
+  let key = req.params["key"];
+
+  getEpisode(key, (err, episode) => {
+    if (err) {
+      res.status(404);
+      res.send("404 Not found");
+      return;
+    }
+
+    pug.renderFile("./episode.pug", { episode }, (err, data) => {
+      res.send(data);
+    });
   });
 });
 

@@ -14,7 +14,12 @@ module.exports = function getEpisode(key, complete) {
   s3.headObject(
     { Bucket: process.env.BUCKETEER_BUCKET_NAME, Key: fullKey },
     (err, obj) => {
-      complete({
+      if (err) {
+        complete(err);
+        return;
+      }
+
+      complete(null, {
         date: obj.Metadata.date,
         title: obj.Metadata.title,
         duration: obj.Metadata.duration,
