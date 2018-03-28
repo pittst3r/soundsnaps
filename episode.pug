@@ -5,7 +5,8 @@ html(lang="en")
     title Soundsnaps: #{episode.title}
 
   body 
-    h1 Soundsnaps
+    h1
+      a(href="/") Soundsnaps
     h2= episode.title
     audio(src=episode.url controls preload)
     dl

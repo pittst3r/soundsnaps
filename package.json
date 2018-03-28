@@ -11,7 +11,8 @@
     "put": "node -r dotenv/config ./scripts/s3.js put",
     "upload": "node -r dotenv/config ./scripts/s3.js upload",
     "delete": "node -r dotenv/config ./scripts/s3.js delete",
-    "list-files": "node -r dotenv/config ./scripts/s3.js list"
+    "list-files": "node -r dotenv/config ./scripts/s3.js list",
+    "aifftowav": "node ./scripts/aifftowav.js"
   },
   "dependencies": {
     "aws-sdk": "^2.213.1",
